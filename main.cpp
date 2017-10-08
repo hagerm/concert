@@ -1,3 +1,11 @@
+/***********************************************************************
+The main function for demonstration of Concert's functionality.
+
+@author Matthew A. Hager
+@version October 7, 2017
+***********************************************************************/
+
+// Includes
 #include <stdio.h>
 #include <ctime>
 #include <vector>
@@ -6,11 +14,16 @@
 #include <algorithm>
 #include "concert.h"
 
+// Runs the code.
 int main(int argc, char** argv){
 
+    // Set ups a list of Concerts
     std::vector<Concert::Concert> concerts;
-    std::tm dt;
+    
+    // Used to set and pass dates in to the objects
+    std::tm dt; 
 
+    // Setting up the concerts.
     dt.tm_mday = 15;
     dt.tm_mon = 8;
     dt.tm_year = 2017;
@@ -58,6 +71,7 @@ int main(int argc, char** argv){
     dt.tm_year = 2019;
     Concert j = Concert("Two Steps from Hell", {"Matt", "Zach"}, 9, dt);
 
+    // Adding the concerts to the list.
     concerts.push_back(a);
     concerts.push_back(b);
     concerts.push_back(c);
@@ -69,15 +83,16 @@ int main(int argc, char** argv){
     concerts.push_back(i);
     concerts.push_back(j);
 
-    
+    // Prints the concerts
     for (int i = 0; i < 10 ; i++){
         std::cout << concerts[i];
     }
     std::cout << "\n\n";
 
+    // Sorts the concerts given Concerts rules
     std::sort(concerts.begin(), concerts.end());
 
-    
+    // Prints the concerts again.
     for (int i = 0; i < 10 ; i++){
         std::cout << concerts[i];
     }
