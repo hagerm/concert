@@ -17,7 +17,8 @@ Concert::Concert(){
 }
 
 
-Concert::Concert(std::string name, std::vector<std::string> friends, int desire, std::tm date){
+Concert::Concert(std::string name, std::vector<std::string> friends,
+                 int desire, std::tm date){
 
     this->concertName = name;
     this->friends = friends;
@@ -51,27 +52,30 @@ bool Concert::operator<(const Concert& other) const{
     if (this->datetime.tm_year < other.datetime.tm_year){
         return true;
     }
-
-    if (this->datetime.tm_mon < other.datetime.tm_mon){
+    if (this->datetime.tm_year == other.datetime.tm_year &&
+        this->datetime.tm_mon < other.datetime.tm_mon){
         return true;
     }
-
-    if (this->datetime.tm_mday < other.datetime.tm_mday){
+    if (this->datetime.tm_year == other.datetime.tm_year &&
+        this->datetime.tm_mon == other.datetime.tm_mon &&
+        this->datetime.tm_mday < other.datetime.tm_mday){
         return true;
     }
-
-    if (this->desire > other.desire){
+    if (this->datetime.tm_year == other.datetime.tm_year &&
+        this->datetime.tm_mon == other.datetime.tm_mon &&
+        this->datetime.tm_mday == other.datetime.tm_mday &&
+        this->desire > other.desire){
         return true;
     }
 
     return false;
 }
 
-
-std::ostream& operator<<(std::ostream os, const Concert& obj){
+std::ostream& operator<<(std::ostream& os, const Concert& obj){
 
     std::tm temp = obj.get_date();
     return os <<  obj.get_name() << " on " << temp.tm_mon << '/' <<
            temp.tm_mday << '/' <<  temp.tm_year << "\t" <<
            obj.get_desire() << "\n";
 }
+
