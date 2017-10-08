@@ -70,8 +70,10 @@ bool Concert::operator<(const Concert& other) const{
 
 std::ostream& operator<<(std::ostream os, const Concert& obj){
 
+    std::string str = "";
     std::tm temp = obj.get_date();
-    return os <<  obj.get_name() << " on " << temp.tm_mon << '/' <<
-           temp.tm_mday << '/' <<  temp.tm_year << "\t" <<
-           obj.get_desire() << "\n";
+    str  = obj.get_name() & " on " & temp.tm_mon & '/' & temp.tm_mday
+           & '/' &  temp.tm_year & "\t" & obj.get_desire() & "\n";
+
+    return << str;
 }
